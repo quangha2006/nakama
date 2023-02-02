@@ -47,7 +47,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       display_name: [''],
       avatar_url: [''],
       location: [''],
-      timezone: ['']
+      timezone: [''],
+      lang_tag: ['']
     });
 
     this.route.parent.data.subscribe(
@@ -58,6 +59,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         this.f.avatar_url.setValue(this.account.user.avatar_url);
         this.f.location.setValue(this.account.user.location);
         this.f.timezone.setValue(this.account.user.timezone);
+        this.f.lang_tag.setValue(this.account.user.lang_tag);
         if (!this.updateAllowed()) {
           this.accountForm.disable();
         }
@@ -100,6 +102,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       avatar_url: this.f.avatar_url.value,
       location: this.f.location.value,
       timezone: this.f.timezone.value,
+      lang_tag: this.f.lang_tag.value,
       metadata: metadata,
     };
     this.consoleService.updateAccount('', this.account.user.id, body).subscribe(d => {
